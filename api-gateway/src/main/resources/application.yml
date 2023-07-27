@@ -14,26 +14,47 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
+        - id: identity-service
+          uri: lb://identity-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthenticationFilter
+
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
             - Path=/inventories/**
+          filters:
+            - AuthenticationFilter
+
         - id: catalog-service
           uri: lb://catalog-service
           predicates:
             - Path=/catalogs/**
+          filters:
+            - AuthenticationFilter
+
         - id: cart-service
           uri: lb://cart-service
           predicates:
             - Path=/carts/**
+          filters:
+            - AuthenticationFilter
+
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/orders/**
+          filters:
+            - AuthenticationFilter
+
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/payments/**
+          filters:
+            - AuthenticationFilter
 
 eureka:
   client:

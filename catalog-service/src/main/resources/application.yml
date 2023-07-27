@@ -1,14 +1,18 @@
 server:
-  port: ${CATALOG_PORT:8085}
+  port: 8082
   servlet:
     context-path: /catalogs
 spring:
+  application:
+    name: catalog-service
   data:
     mongodb:
       database: inventory
       port: 27017
-  application:
-    name: catalog-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restcommerce
+    username: postgres
+    password: root
 eureka:
   client:
     service-url:

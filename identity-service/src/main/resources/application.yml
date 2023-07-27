@@ -1,0 +1,24 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /auth
+spring:
+  application:
+    name: identity-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restcommerce
+    username: postgres
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+jwt:
+  secret-key: oQFSq+PKonsnjypJhi4W56tIRrPzPEsJi7aE//oNGIPOxNByGu/Vu8/Kms8dXULK1iHRfbSl7XLRrR+dTTV+vw==
+  expired-length: 300000
