@@ -1,4 +1,4 @@
-package id.neuman.identity.exception.errorhandling;
+package id.neuman.identity.exception.handling;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import id.neuman.common.dto.response.BaseResponse;
@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -24,7 +23,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException {
         log.error("[UNAUTHORIZED ERROR: {}]", e.getMessage());
-        String responseToString = objectMapper.writeValueAsString(new BaseResponse<>(HttpStatus.UNAUTHORIZED.getReasonPhrase(), e.getMessage()));
+        String responseToString = objectMapper.writeValueAsString(new BaseResponse<>(e.getMessage(), null));
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.getWriter().write(responseToString);

@@ -1,4 +1,4 @@
-package id.neuman.identity.exception.errorhandling;
+package id.neuman.identity.exception.handling;
 
 import id.neuman.common.dto.response.BaseResponse;
 import io.jsonwebtoken.JwtException;

@@ -5,6 +5,7 @@ import id.neuman.identity.dto.request.AuthRequest;
 import id.neuman.identity.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/validate-token")
-    public ResponseEntity<BaseResponse<Boolean>> validateToken(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<BaseResponse<Boolean>> validateToken(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        log.info("TOKEN: {}", token);
         return ResponseEntity
                 .ok()
                 .body(new BaseResponse<>("Success", authenticationService.validateToken(token)));

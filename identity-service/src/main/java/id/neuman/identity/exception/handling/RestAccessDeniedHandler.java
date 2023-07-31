@@ -1,4 +1,4 @@
-package id.neuman.identity.exception.errorhandling;
+package id.neuman.identity.exception.handling;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import id.neuman.common.dto.response.BaseResponse;
