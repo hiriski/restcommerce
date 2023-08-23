@@ -27,7 +27,6 @@ spring:
           uri: lb://inventory-service
           predicates:
             - Path=/inventories/**
-            - Header=Authorization
           filters:
             - AuthenticationFilter
 
@@ -35,7 +34,6 @@ spring:
           uri: lb://catalog-service
           predicates:
             - Path=/catalogs/**
-            - Header=Authorization
           filters:
             - AuthenticationFilter
 
@@ -43,7 +41,6 @@ spring:
           uri: lb://cart-service
           predicates:
             - Path=/carts/**
-            - Header=Authorization
           filters:
             - AuthenticationFilter
 
@@ -51,7 +48,6 @@ spring:
           uri: lb://order-service
           predicates:
             - Path=/orders/**
-            - Header=Authorization
           filters:
             - AuthenticationFilter
 
@@ -59,7 +55,6 @@ spring:
           uri: lb://payment-service
           predicates:
             - Path=/payments/**
-            - Header=Authorization
           filters:
             - AuthenticationFilter
 
