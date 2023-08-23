@@ -42,10 +42,9 @@ public class ApiGatewayGlobalErrorAttributes extends DefaultErrorAttributes {
         map.put("status", errorStatusCode.value());
 
         try {
-            BaseResponse baseResponse = objectMapper.readValue(error.getMessage(), BaseResponse.class);
-            map.put("message", baseResponse.getMessage());
+            map.put("message", objectMapper.readValue(error.getMessage(), BaseResponse.class));
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         log.info("ERROR MESSAGE: {}", error.getMessage());
