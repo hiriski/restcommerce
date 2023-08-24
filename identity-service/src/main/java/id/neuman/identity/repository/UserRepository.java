@@ -1,6 +1,6 @@
 package id.neuman.identity.repository;
 
-import id.neuman.identity.model.User;
+import id.neuman.identity.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

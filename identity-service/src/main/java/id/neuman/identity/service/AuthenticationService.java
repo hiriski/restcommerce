@@ -1,7 +1,7 @@
 package id.neuman.identity.service;
 
 import id.neuman.identity.dto.request.AuthRequest;
-import id.neuman.identity.model.User;
+import id.neuman.identity.entities.User;
 import id.neuman.identity.repository.UserRepository;
 import id.neuman.identity.util.JwtUtil;
 import lombok.RequiredArgsConstructor;

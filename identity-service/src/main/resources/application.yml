@@ -21,4 +21,4 @@ eureka:
       default-zone: http://localhost:8761/eureka/
 jwt:
   secret-key: oQFSq+PKonsnjypJhi4W56tIRrPzPEsJi7aE//oNGIPOxNByGu/Vu8/Kms8dXULK1iHRfbSl7XLRrR+dTTV+vw==
-  expired-length: 300000
+  expired-length: 3600000
