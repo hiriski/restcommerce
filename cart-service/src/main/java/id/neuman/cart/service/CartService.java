@@ -13,37 +13,31 @@ public class CartService {
 
     private final CartRepository cartRepository;
 
-    public Object addEditToCart(String action, AddEditToCartRequest request) {
+    public String addEditToCart(String action, AddEditToCartRequest request) {
 
-        if (request.getCartId() != null && action.equalsIgnoreCase("add")) {
-
-            Cart cart = cartRepository.findById(request.getCartId())
-                    .orElseThrow(() -> new IllegalArgumentException("Cart id not exists!"));
-
-            Integer quantity = cart.getQuantity();
-            quantity += 1;
-
-            cart.setQuantity(quantity);
-
-            cartRepository.save(cart);
-        } else if (request.getCartId() != null && action.equalsIgnoreCase("edit")) {
-            Cart cart = cartRepository.findById(request.getCartId())
-                    .orElseThrow(() -> new IllegalArgumentException("Cart id not exists!"));
-
-            Integer quantity = cart.getQuantity();
-            quantity -= 1;
-
-            cart.setQuantity(quantity);
-
-            cartRepository.save(cart);
-            return "Success";
+        if (!(action.equalsIgnoreCase("add") ||
+                action.equalsIgnoreCase("reduce") ||
+                action.equalsIgnoreCase("edit"))) {
+            return "Wrong action!";
         }
 
-        Cart cart = new Cart();
-        BeanUtils.copyProperties(request, cart);
+        Cart cart = cartRepository.findByProductId(request.getProductId()).orElse(new Cart());
 
+        Integer quantity =  editQuantityProduct(action, cart.getQuantity());
+
+        if (action.equalsIgnoreCase("edit")) {
+            quantity = request.getQuantity();
+        }
+
+        BeanUtils.copyProperties(request, cart);
+        cart.setQuantity(quantity);
         cartRepository.save(cart);
 
         return "Success";
+    }
+
+    private Integer editQuantityProduct(String action, Integer quantity) {
+        quantity = quantity == null ? 0 : quantity;
+        return action.equalsIgnoreCase("add") ? quantity + 1 : quantity - 1;
     }
 }

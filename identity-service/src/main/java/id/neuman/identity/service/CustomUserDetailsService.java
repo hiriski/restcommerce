@@ -1,6 +1,6 @@
 package id.neuman.identity.service;
 
-import id.neuman.identity.model.User;
+import id.neuman.identity.entities.User;
 import id.neuman.identity.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
